@@ -14,8 +14,6 @@ export function CreateAdModal(){
   const [games, setGames] = useState<Game[]>([])
   const [weekDays, setWeekDays] = useState<string[]>([])
 
-  console.log(weekDays)
-
   useEffect(() => {
     fetch('http://localhost:3333/games')
     .then( response => response.json())
