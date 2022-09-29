@@ -4,6 +4,7 @@ import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { Check, GameController } from 'phosphor-react'
 import { Input } from './Form/Input'
 import { useEffect, useState, FormEvent } from 'react'
+import axios from 'axios'
 
 interface Game{
   id: string;
@@ -16,10 +17,8 @@ export function CreateAdModal(){
   const [useVoiceChannel, setUseVoiceChannel] = useState(false)
 
   useEffect(() => {
-    fetch('http://localhost:3333/games')
-    .then( response => response.json())
-    .then(data => {
-      setGames(data)
+    axios('http://localhost:3333/games').then(response => {
+      setGames(response.data)
     })
   }, [])
 
@@ -30,9 +29,7 @@ export function CreateAdModal(){
     const formData = new FormData(event.target as HTMLFormElement)
     const data = Object.fromEntries(formData)
 
-    console.log(data)
-    console.log(weekDays)
-    console.log(useVoiceChannel)
+    
   }
 
   return(
